@@ -43,12 +43,8 @@ stages:
         Contents: '**'
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-    - task: KubernetesManifest@0
+    - task: PublishBuildArtifacts@1
       inputs:
-        action: 'deploy'
-        manifests: |
-           $(Build.ArtifactStagingDirectory)/app.yml
-           $(Build.ArtifactStagingDirectory)/service.yml
-        kubernetesServiceConnection: 'cluster-connection'
-        containers: |
-          $(containerRegistry)/$(imageRepository):$(tag)
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'container'
