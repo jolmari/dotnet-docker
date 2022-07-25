@@ -39,7 +39,7 @@ stages:
           $(tag)
     - task: CopyFiles@2
       inputs:
-        SourceFolder: 'dotnet-docker/kubernetes'
+        SourceFolder: '/kubernetes'
         Contents: '**'
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
